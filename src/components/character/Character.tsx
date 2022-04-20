@@ -1,18 +1,15 @@
 import React from "react";
+
+import { People } from "../../swapi/swapiInterfaces";
+
 import classes from "./Character.module.css";
 
-export default function Character() {
-  const characterProperties = {
-    name: "luke",
-    height: "2 meters",
-    mass: "2 tonns",
-    hair_color: "black",
-    skin_color: "white",
-    eye_color: "green",
-    birth_year: "1567",
-    gender: "male",
-    homeworld: "moon",
-  };
+interface CharacterProps {
+  characterProperties: People;
+}
+
+export default function Character(props: CharacterProps) {
+  const { characterProperties } = props;
 
   return (
     <div className={classes.character}>
