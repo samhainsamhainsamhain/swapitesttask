@@ -3,7 +3,7 @@ import { useState } from "react";
 import SearchBox from "./components/searchBox/SearchBox";
 import Character from "./components/character/Character";
 import SearchResults from "./components/searchResults/SearchResults";
-import History from "./components/history/History";
+import History from "./components/searchHistory/SearchHistory";
 import { People, PeopleSearchResult } from "./swapi/swapiInterfaces";
 
 import "./App.css";
