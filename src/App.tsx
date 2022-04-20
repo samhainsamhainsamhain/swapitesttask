@@ -1,17 +1,26 @@
 import { useState } from "react";
 
-import SearchBox from "./components/search/SearchBox";
+import SearchBox from "./components/searchBox/SearchBox";
 import Character from "./components/character/Character";
+import SearchResults from "./components/searchResults/SearchResults";
+import History from "./components/history/History";
 import { People, PeopleSearchResult } from "./swapi/swapiInterfaces";
 
 import "./App.css";
-import SearchResults from "./components/searchResults/SearchResults";
 
 function App() {
   const [showedCharacter, setShowedCharacter] = useState<People | null>(null);
   const [searchResult, setSearchResult] = useState<PeopleSearchResult | null>(
     null
   );
+  const [searchHistory, setSearchHistory] = useState<People[] | null>([]);
+  const [showSearchHistory, setShowSearchHistory] = useState<Boolean>(false);
+
+  function updateHistory(character: People) {
+    const updatedHistory = searchHistory;
+    updatedHistory?.push(character);
+    setSearchHistory(updatedHistory);
+  }
 
   function getSearchResult(queryResult: PeopleSearchResult) {
     setShowedCharacter(null);
@@ -20,6 +29,7 @@ function App() {
 
   function showCharacter(character: People) {
     console.log(character);
+    updateHistory(character);
     setShowedCharacter(character);
   }
 
@@ -35,6 +45,19 @@ function App() {
       )}
       {showedCharacter !== null && (
         <Character characterProperties={showedCharacter} />
+      )}
+      <button
+        onClick={() => {
+          setShowSearchHistory(!showSearchHistory);
+        }}
+      >
+        Show search history
+      </button>
+      {showSearchHistory && searchHistory !== null && (
+        <History
+          searchHistory={searchHistory}
+          onHistoryItemClick={showCharacter}
+        />
       )}
     </div>
   );
