@@ -28,6 +28,9 @@ function App() {
   }
 
   function showCharacter(character: People) {
+    if (character === showedCharacter) {
+      return console.log("Already showed");
+    }
     console.log(character);
     updateHistory(character);
     setShowedCharacter(character);
