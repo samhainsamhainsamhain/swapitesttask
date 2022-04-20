@@ -33,7 +33,9 @@ function App() {
           resultClickHandler={showCharacter}
         />
       )}
-      <Character />
+      {showedCharacter !== null && (
+        <Character characterProperties={showedCharacter} />
+      )}
     </div>
   );
 }
