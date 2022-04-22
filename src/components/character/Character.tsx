@@ -1,5 +1,3 @@
-import React from "react";
-
 import { People } from "../../swapi/swapiInterfaces";
 
 import classes from "./Character.module.css";
