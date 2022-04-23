@@ -7,7 +7,7 @@ import History from "./components/searchHistory/SearchHistory";
 import { People, PeopleSearchResult } from "./swapi/swapiInterfaces";
 import { HistoryContext, HistoryProvider } from "./store/swapiProvider";
 
-import "./App.css";
+import classes from "./App.module.css";
 
 function App() {
   const [showedCharacter, setShowedCharacter] = useState<People | null>(null);
@@ -29,38 +29,56 @@ function App() {
   }
 
   function showCharacter(character: People) {
-    if (character === showedCharacter) return
+    if (character === showedCharacter) return;
     updateHistory(character);
     setShowedCharacter(character);
   }
 
+  const searchResultsComponent = (
+    <>
+      {searchResult === null && <h2>Swapi Character Searcher</h2>}
+      {searchResult !== null && showedCharacter === null && (
+        <SearchResults
+          results={searchResult}
+          resultClickHandler={showCharacter}
+        />
+      )}
+    </>
+  );
+
+  const showedCharacterComponent = (
+    <>
+      {showedCharacter !== null && (
+        <Character characterProperties={showedCharacter} />
+      )}
+    </>
+  );
+
+  const searchHistoryComponent = (
+    <>
+      <button
+        onClick={() => {
+          setShowSearchHistory(!showSearchHistory);
+        }}
+      >
+        Show Search History
+      </button>
+      {showSearchHistory && historyCtx.searchHistory !== null && (
+        <History
+          searchHistory={historyCtx.searchHistory}
+          onHistoryItemClick={showCharacter}
+        />
+      )}
+    </>
+  );
+
   return (
     <HistoryProvider>
-      <div className="App">
+      <div className={classes.App}>
         <SearchBox onSearchResultReceived={getSearchResult} />
-        {searchResult === null && <h2>Swapi Character Searcher</h2>}
-        {searchResult !== null && showedCharacter === null && (
-          <SearchResults
-            results={searchResult}
-            resultClickHandler={showCharacter}
-          />
-        )}
-        {showedCharacter !== null && (
-          <Character characterProperties={showedCharacter} />
-        )}
-        <button
-          onClick={() => {
-            setShowSearchHistory(!showSearchHistory);
-          }}
-        >
-          Show search history
-        </button>
-        {showSearchHistory && historyCtx.searchHistory !== null && (
-          <History
-            searchHistory={historyCtx.searchHistory}
-            onHistoryItemClick={showCharacter}
-          />
-        )}
+        {searchResultsComponent}
+        {showedCharacterComponent}
+        {searchHistoryComponent}
       </div>
     </HistoryProvider>
   );
