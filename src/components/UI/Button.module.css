@@ -1,0 +1,16 @@
+.button {
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+.button:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+.button:active {
+  background-color: rgb(195, 195, 195);
+}

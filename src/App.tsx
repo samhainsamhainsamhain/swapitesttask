@@ -6,6 +6,7 @@ import SearchResults from "./components/searchResults/SearchResults";
 import History from "./components/searchHistory/SearchHistory";
 import { People, PeopleSearchResult } from "./swapi/swapiInterfaces";
 import { HistoryContext, HistoryProvider } from "./store/swapiProvider";
+import Button from "./components/UI/Button";
 
 import classes from "./App.module.css";
 
@@ -56,13 +57,12 @@ function App() {
 
   const searchHistoryComponent = (
     <>
-      <button
-        onClick={() => {
+      <Button
+        action={() => {
           setShowSearchHistory(!showSearchHistory);
         }}
-      >
-        Show Search History
-      </button>
+        buttonName={"Show Search History"}
+      />
       {showSearchHistory && historyCtx.searchHistory !== null && (
         <History
           searchHistory={historyCtx.searchHistory}

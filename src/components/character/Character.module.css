@@ -1,0 +1,23 @@
+.character {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+h1 {
+  align-self: center;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+}
+
+p {
+  text-transform: capitalize;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: rgb(192, 181, 255);
+}

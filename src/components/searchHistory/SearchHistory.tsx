@@ -1,6 +1,6 @@
-import React from "react";
-
 import { People } from "../../swapi/swapiInterfaces";
+
+import classes from "./SearchHistory.module.css";
 
 interface HistoryProps {
   searchHistory: People[];
@@ -13,18 +13,25 @@ export default function History(props: HistoryProps) {
   }
 
   return (
-    <div>
+    <div className={classes.historyContainer}>
       <h3>Search History</h3>
-      {props.searchHistory.length > 0 ? <ul>
-        {props.searchHistory !== null &&
-          props.searchHistory.map((history) => {
-            return (
-              <li key={Math.random()} onClick={() => onHistoryItemClick(history)}>
-                {history.name}
-              </li>
-            );
-          })}
-      </ul> : <p>Empty. Search some characters first</p>}
+      {props.searchHistory.length > 0 ? (
+        <ul className={classes.historyList}>
+          {props.searchHistory !== null &&
+            props.searchHistory.map((history) => {
+              return (
+                <li
+                  key={Math.random()}
+                  onClick={() => onHistoryItemClick(history)}
+                >
+                  {history.name}
+                </li>
+              );
+            })}
+        </ul>
+      ) : (
+        <p>Empty. Search some characters first.</p>
+      )}
     </div>
   );
 }

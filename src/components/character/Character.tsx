@@ -14,10 +14,10 @@ interface Homeworld {
 
 export default function Character(props: CharacterProps) {
   const { characterProperties } = props;
-  const [homeworldName, setHomeworldName] = useState("")
+  const [homeworldName, setHomeworldName] = useState("");
 
   useEffect(() => {
-    getSearchResult()
+    getSearchResult();
   }, []);
 
   async function getSearchResult() {

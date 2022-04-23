@@ -1,5 +1,3 @@
-import React from "react";
-
 import { People, PeopleSearchResult } from "../../swapi/swapiInterfaces";
 
 import classes from "./SearchResults.module.css";
