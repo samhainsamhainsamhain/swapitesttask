@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { swapiFetch } from "../../swapi/swapiFetch";
 import { PeopleSearchResult } from "../../swapi/swapiInterfaces";
+import Button from "../UI/Button";
 
 import classes from "./SearchBox.module.css";
 
@@ -26,13 +27,13 @@ export default function SearchBox(props: SearchBoxProps) {
 
   return (
     <header className={classes.searchBox}>
-      <form onSubmit={getSearchResult}>
+      <form className={classes.searchForm} onSubmit={getSearchResult}>
         <input
           placeholder="Search for a character"
           onChange={queryChangeHandler}
           value={query}
         />
-        <button type="submit">Search</button>
+        <Button buttonType="submit" buttonName={"Search"} />
       </form>
     </header>
   );
